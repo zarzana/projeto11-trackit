@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
 
@@ -14,13 +15,17 @@ function LoginPage() {
                 <input type='text' placeholder='foto' />
                 <button type="submit">Cadastrar</button>
             </form>
-            <p>Já tem uma conta? Faça login!</p>
+            <Link to={'/'}>
+                <p>Já tem uma conta? Faça login!</p>
+            </Link>
         </CadastroPageContainer>
     )
 
 }
 
 const CadastroPageContainer = styled.div`
+    height: 100vh;
+    background: #FFFFFF;
     h1 {
         margin-bottom: 32px;
         font-family: 'Playball';
@@ -37,11 +42,12 @@ const CadastroPageContainer = styled.div`
         height: 45px;
     }
     input {
+        box-sizing: border-box;
         padding-left: 10px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
-        font-size: 19.976px;
+        font-size: 19px;
         color: #666666;
     }
     button {
