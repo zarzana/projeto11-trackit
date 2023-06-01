@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import NavBar from "../../components/NavBar";
 import StatusBar from "../../components/StatusBar";
-import Task from "./Tank";
+import Task from "./Task";
 
 function HojePage() {
 
