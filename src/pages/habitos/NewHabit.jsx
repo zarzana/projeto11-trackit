@@ -24,7 +24,6 @@ function NewHabit() {
 const NewHabitContainer = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
     width: 100%;
     background: #FFFFFF;
     border-radius: 5px;

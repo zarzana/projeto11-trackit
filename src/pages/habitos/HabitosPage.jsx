@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import NewHabit from "./NewHabit";
 import NavBar from "../../components/NavBar";
 import StatusBar from "../../components/StatusBar";
+import NewHabit from "./NewHabit";
+import Habit from "./Habit";
 
 function HabitosPage() {
 
@@ -14,6 +15,7 @@ function HabitosPage() {
                     <button>+</button>
                 </div>
                 <NewHabit></NewHabit>
+                <Habit name={'Nome do hábito'}></Habit>
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             </HabitosPageContainer>
             <StatusBar></StatusBar>
@@ -27,6 +29,7 @@ const HabitosPageContainer = styled.div`
     .habitTop {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 20px;
         h2 {
         font-size: 23px;
         line-height: 29px;
