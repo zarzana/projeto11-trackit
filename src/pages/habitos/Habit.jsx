@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import trashCanSvg from "../../assets/trashcan_icon.svg"
 
 function Habit({ name }) {
     return (
         <HabitContainer>
+            <img src={trashCanSvg}></img>
             <h3>{name}</h3>
             <div className="daySelection">
                 <button className="dayButton">D</button>
@@ -18,12 +20,20 @@ function Habit({ name }) {
 }
 
 const HabitContainer = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
     width: 100%;
     background: #FFFFFF;
     border-radius: 5px;
+    img {
+        position: absolute;
+        top: 11px;
+        right: 10px;
+        width: 13px;
+        height: 15px;
+    }
     h3 {
         margin-left: 5%;
         margin-top: 4%;

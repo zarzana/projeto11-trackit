@@ -16,6 +16,8 @@ function HabitosPage() {
                 </div>
                 <NewHabit></NewHabit>
                 <Habit name={'Nome do hábito'}></Habit>
+                <Habit name={'Nome do hábito 2'}></Habit>
+                <Habit name={'Nome do hábito 3'}></Habit>
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             </HabitosPageContainer>
             <StatusBar></StatusBar>
