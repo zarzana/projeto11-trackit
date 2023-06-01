@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from './pages/login/LoginPage';
 import CadastroPage from './pages/cadastro/CadastroPage';
 import HabitosPage from './pages/habitos/HabitosPage';
+import HojePage from './pages/hoje/HojePage';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/cadastro" element={<CadastroPage />} />
                 <Route path="/habitos" element={<HabitosPage />} />
+                <Route path="/hoje" element={<HojePage />} />
             </Routes>
         </BrowserRouter>
     )

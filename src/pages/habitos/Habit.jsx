@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import trashCanSvg from "../../assets/trashcan_icon.svg"
+import trashcan from "../../assets/trashcan.svg";
 
 function Habit({ name }) {
     return (
         <HabitContainer>
-            <img src={trashCanSvg}></img>
+            <img src={trashcan}></img>
             <h3>{name}</h3>
             <div className="daySelection">
                 <button className="dayButton">D</button>
