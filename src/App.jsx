@@ -6,6 +6,7 @@ import LoginPage from './pages/login/LoginPage';
 import CadastroPage from './pages/cadastro/CadastroPage';
 import HabitosPage from './pages/habitos/HabitosPage';
 import HojePage from './pages/hoje/HojePage';
+import HistoricoPage from './pages/historico/HistoricoPage';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/cadastro" element={<CadastroPage />} />
                 <Route path="/habitos" element={<HabitosPage />} />
                 <Route path="/hoje" element={<HojePage />} />
+                <Route path="/historico" element={<HistoricoPage />} />
             </Routes>
         </BrowserRouter>
     )
