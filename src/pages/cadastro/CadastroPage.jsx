@@ -12,13 +12,13 @@ function LoginPage() {
     const [name, setName] = useState('');
     const [picture, setPicture] = useState('');
 
-    const [formDisabled, setFormDisabled] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const signUp = (e) => {
         e.preventDefault();
-        setFormDisabled(true);
+        setLoading(true);
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up';
         const request = axios.post(URL, {
             'email': email,
@@ -35,22 +35,22 @@ function LoginPage() {
                 const errorStatus = error.response.status;
                 if (errorStatus === 422) { alert('Dados inválidos.') }
                 else if (errorStatus === 409) { alert('Email já cadastrado.') }
-                setFormDisabled(false);
+                setLoading(false);
             });
     }
 
     return (
-        <CadastroPageContainer formDisabled={formDisabled}>
+        <CadastroPageContainer>
             <img src={logo} />
             <h1>TrackIt</h1>
             <form onSubmit={signUp}>
-                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={formDisabled} data-test="email-input" />
-                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={formDisabled} data-test="password-input" />
-                <input type='text' placeholder='nome' value={name} onChange={e => setName(e.target.value)} disabled={formDisabled} data-test="user-name-input" />
-                <input type='text' placeholder='foto' value={picture} onChange={e => setPicture(e.target.value)} disabled={formDisabled} data-test="user-image-input" />
-                <button type="submit" disabled={formDisabled} data-test="signup-btn">
-                    {formDisabled ?
-                        <ThreeDots height="15" width="300" radius="1" color="#FFFFFF" ariaLabel="three-dots-loading" visible={formDisabled} />
+                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={loading} data-test="email-input" />
+                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={loading} data-test="password-input" />
+                <input type='text' placeholder='nome' value={name} onChange={e => setName(e.target.value)} disabled={loading} data-test="user-name-input" />
+                <input type='text' placeholder='foto' value={picture} onChange={e => setPicture(e.target.value)} disabled={loading} data-test="user-image-input" />
+                <button type="submit" disabled={loading} data-test="signup-btn">
+                    {loading ?
+                        <ThreeDots height="15" width="300" radius="1" color="#FFFFFF" ariaLabel="three-dots-loading" visible={true} />
                         : <span className="buttonText">Entrar</span>}
                 </button>
             </form>
@@ -106,9 +106,6 @@ const CadastroPageContainer = styled.div`
         text-align: center;
         color: #FFFFFF;
         opacity: 1;
-        .buttonText {
-            display: ${props => props.formDisabled ? 'none' : 'block'};
-        }
     }
     button:disabled {
         opacity: 0.7;

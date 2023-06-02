@@ -10,13 +10,13 @@ function LoginPage({ setAuthToken, setUserImage }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const [formDisabled, setFormDisabled] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const signIn = (e) => {
         e.preventDefault();
-        setFormDisabled(true);
+        setLoading(true);
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login';
         const request = axios.post(URL, {
             'email': email,
@@ -31,20 +31,20 @@ function LoginPage({ setAuthToken, setUserImage }) {
             .catch((error) => {
                 console.log(error);
                 alert('Login ou senha inválidos.');
-                setFormDisabled(false);
+                setLoading(false);
             });
     }
 
     return (
-        <LoginPageContainer formDisabled={formDisabled}>
+        <LoginPageContainer>
             <img src={logo} />
             <h1>TrackIt</h1>
             <form onSubmit={signIn}>
-                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={formDisabled} data-test="email-input" />
-                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={formDisabled} data-test="password-input" />
-                <button type="submit" disabled={formDisabled} data-test="login-btn">
-                    {formDisabled ?
-                        <ThreeDots height="15" width="300" radius="1" color="#FFFFFF" ariaLabel="three-dots-loading" visible={formDisabled} />
+                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={loading} data-test="email-input" />
+                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={loading} data-test="password-input" />
+                <button type="submit" disabled={loading} data-test="login-btn">
+                    {loading ?
+                        <ThreeDots height="15" width="300" radius="1" color="#FFFFFF" ariaLabel="three-dots-loading" visible={true} />
                         : <span className="buttonText">Entrar</span>}
                 </button>
             </form>
@@ -100,9 +100,6 @@ const LoginPageContainer = styled.div`
         text-align: center;
         color: #FFFFFF;
         opacity: 1;
-        .buttonText {
-            display: ${props => props.formDisabled ? 'none' : 'block'};
-        }
     }
     button:disabled {
         opacity: 0.7;
