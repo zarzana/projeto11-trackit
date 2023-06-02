@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { dayPercentageContext } from "../contexts/Contexts";
+import { useContext } from "react";
 
 function StatusBar() {
+
+    const { dayPercentage, setDayPercentage } = useContext(dayPercentageContext);
+
     return (
         <SatusBarContainer>
             <div className="CircularProgressbarDiv">
-                <CircularProgressbar value={66} text="Hoje" background backgroundPadding={6} strokeWidth={9}
+                <CircularProgressbar value={dayPercentage} text="Hoje" background backgroundPadding={6} strokeWidth={9}
                     styles={buildStyles({
                         backgroundColor: "#52B6FF",
                         textColor: "#FFFFFF",
@@ -21,6 +26,7 @@ function StatusBar() {
             </div>
         </SatusBarContainer>
     )
+
 }
 
 const SatusBarContainer = styled.div`

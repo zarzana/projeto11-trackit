@@ -6,29 +6,31 @@ import CadastroPage from './pages/cadastro/CadastroPage';
 import HabitosPage from './pages/habitos/HabitosPage';
 import HojePage from './pages/hoje/HojePage';
 import HistoricoPage from './pages/historico/HistoricoPage';
-import { AuthContext } from './contexts/AuthContext';
-import { UserImageContext } from './contexts/UserImageContext';
+import { AuthContext, UserImageContext, dayPercentageContext } from './contexts/Contexts';
 import { useState } from 'react';
 
 function App() {
 
     const [authToken, setAuthToken] = useState(undefined);
     const [userImage, setUserImage] = useState('https://http.cat/404');
+    const [dayPercentage, setDayPercentage] = useState(0);
 
     return (
         <AuthContext.Provider value={authToken}>
             <UserImageContext.Provider value={userImage}>
-                <BrowserRouter>
-                    <ResetStyle />
-                    <GlobalStyle />
-                    <Routes>
-                        <Route path="/" element={<LoginPage setAuthToken={setAuthToken} setUserImage={setUserImage} />} />
-                        <Route path="/cadastro" element={<CadastroPage />} />
-                        <Route path="/habitos" element={<HabitosPage />} />
-                        <Route path="/hoje" element={<HojePage />} />
-                        <Route path="/historico" element={<HistoricoPage />} />
-                    </Routes>
-                </BrowserRouter>
+                <dayPercentageContext.Provider value={{ dayPercentage, setDayPercentage }}>
+                    <BrowserRouter>
+                        <ResetStyle />
+                        <GlobalStyle />
+                        <Routes>
+                            <Route path="/" element={<LoginPage setAuthToken={setAuthToken} setUserImage={setUserImage} />} />
+                            <Route path="/cadastro" element={<CadastroPage />} />
+                            <Route path="/habitos" element={<HabitosPage />} />
+                            <Route path="/hoje" element={<HojePage />} />
+                            <Route path="/historico" element={<HistoricoPage />} />
+                        </Routes>
+                    </BrowserRouter>
+                </dayPercentageContext.Provider>
             </UserImageContext.Provider>
         </AuthContext.Provider>
     )

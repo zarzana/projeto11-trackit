@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { UserImageContext } from "../contexts/UserImageContext";
+import { UserImageContext } from "../contexts/Contexts";
 import { useContext } from "react";
 
 function NavBar() {
