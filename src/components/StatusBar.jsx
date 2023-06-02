@@ -10,9 +10,9 @@ function StatusBar() {
     const { dayPercentage, } = useContext(dayPercentageContext);
 
     return (
-        <SatusBarContainer>
+        <SatusBarContainer data-test="menu">
             <div className="CircularProgressbarDiv">
-                <Link to={'/hoje'}>
+                <Link to={'/hoje'} data-test="today-link">
                     <CircularProgressbar value={dayPercentage} text="Hoje" background backgroundPadding={6} strokeWidth={9}
                         styles={buildStyles({
                             backgroundColor: "#52B6FF",
@@ -24,8 +24,8 @@ function StatusBar() {
                 </Link>
             </div>
             <div>
-                <Link to={'/habitos'} style={{ textDecoration: 'none' }}><p className="statusBarLink">Hábitos</p></Link>
-                <Link to={'/historico'} style={{ textDecoration: 'none' }}><p className="statusBarLink">Histórico</p></Link>
+                <Link to={'/habitos'} style={{ textDecoration: 'none' }} data-test="habit-link"><p className="statusBarLink">Hábitos</p></Link>
+                <Link to={'/historico'} style={{ textDecoration: 'none' }} data-test="history-link"><p className="statusBarLink">Histórico</p></Link>
             </div>
         </SatusBarContainer>
     )

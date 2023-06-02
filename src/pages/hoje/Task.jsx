@@ -3,15 +3,15 @@ import checkmark from "../../assets/checkmark.svg"
 
 function Task({ name }) {
     return (
-        <TaskContainer>
+        <TaskContainer data-test="today-habit-container">
             <div>
-                <h3>{name}</h3>
-                <p>Sequência atual: <span className="currentSequence">3 dias</span></p>
-                <p>Seu recorde: <span className="personalBest">5 dias</span></p>
+                <h3 data-test="today-habit-name">{name}</h3>
+                <p data-test="today-habit-sequence">Sequência atual: <span className="currentSequence">3 dias</span></p>
+                <p data-test="today-habit-record">Seu recorde: <span className="personalBest">5 dias</span></p>
             </div>
-            <div className="checkmarkBox">
+            <button className="checkmarkButton" data-test="today-habit-check-btn">
                 <img src={checkmark} />
-            </div>
+            </button>
         </TaskContainer>
     )
 }
@@ -43,7 +43,7 @@ const TaskContainer = styled.div`
             color: #8FC549;
         }
     }
-    .checkmarkBox {
+    .checkmarkButton {
         width: 69px;
         height: 69px;
         margin: 4% 4% 4% auto;
@@ -51,8 +51,8 @@ const TaskContainer = styled.div`
         border: 1px solid #E7E7E7;
         border-radius: 5px;
         img {
-            margin-top: 20px;
-            margin-left: 19px;
+            margin-top: 3px;
+            margin-left: 3px;
             width: 35px;
             height: 28px;
         }

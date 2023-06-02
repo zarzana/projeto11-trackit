@@ -40,9 +40,9 @@ function LoginPage({ setAuthToken, setUserImage }) {
             <img src={logo} />
             <h1>TrackIt</h1>
             <form onSubmit={signIn}>
-                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={formDisabled} />
-                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={formDisabled} />
-                <button type="submit" disabled={formDisabled}>
+                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={formDisabled} data-test="email-input" />
+                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={formDisabled} data-test="password-input" />
+                <button type="submit" disabled={formDisabled} data-test="login-btn">
                     <span className="buttonText">Entrar</span>
                     <ThreeDots
                         height="15"
@@ -54,7 +54,7 @@ function LoginPage({ setAuthToken, setUserImage }) {
                     />
                 </button>
             </form>
-            <Link to={'/cadastro'}>
+            <Link to={'/cadastro'} data-test="signup-link">
                 <p>Não tem uma conta? Cadastre-se!</p>
             </Link>
 

@@ -4,9 +4,9 @@ import { useContext } from "react";
 
 function NavBar() {
     return (
-        <NavBarContainer>
+        <NavBarContainer data-test="header">
             <h1>TrackIt</h1>
-            <img src={useContext(UserImageContext)}></img>
+            <img src={useContext(UserImageContext)} data-test="avatar"></img>
         </NavBarContainer>
     )
 }

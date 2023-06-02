@@ -3,17 +3,17 @@ import trashcan from "../../assets/trashcan.svg";
 
 function Habit({ name }) {
     return (
-        <HabitContainer>
-            <img src={trashcan}></img>
-            <h3>{name}</h3>
+        <HabitContainer data-test="habit-container">
+            <img src={trashcan} data-test="habit-delete-btn"></img>
+            <h3 data-test="habit-name">{name}</h3>
             <div className="daySelection">
-                <button className="dayButton">D</button>
-                <button className="dayButton">S</button>
-                <button className="dayButton">T</button>
-                <button className="dayButton">Q</button>
-                <button className="dayButton">Q</button>
-                <button className="dayButton">S</button>
-                <button className="dayButton">S</button>
+                <button className="dayButton" data-test="habit-day">D</button>
+                <button className="dayButton" data-test="habit-day">S</button>
+                <button className="dayButton" data-test="habit-day">T</button>
+                <button className="dayButton" data-test="habit-day">Q</button>
+                <button className="dayButton" data-test="habit-day">Q</button>
+                <button className="dayButton" data-test="habit-day">S</button>
+                <button className="dayButton" data-test="habit-day">S</button>
             </div>
         </HabitContainer>
     )

@@ -31,8 +31,8 @@ function HojePage() {
             <NavBar></NavBar>
             <HojePageContainer>
                 <div className="hojeTop">
-                    <h2>{dayjs().locale('pt-br').format('dddd, DD/MM')}</h2>
-                    <p className="hojeStatus">Nenhum hábito concluído ainda</p>
+                    <h2 data-test="today">{dayjs().locale('pt-br').format('dddd, DD/MM')}</h2>
+                    <p className="hojeStatus" data-test="today-counter">Nenhum hábito concluído ainda</p>
                 </div>
                 <Task name={'Nome da tarefa'}></Task>
             </HojePageContainer>

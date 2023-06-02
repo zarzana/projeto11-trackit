@@ -31,7 +31,7 @@ function HabitosPage() {
             <HabitosPageContainer>
                 <div className="habitTop">
                     <h2>Meus hábitos</h2>
-                    <button>+</button>
+                    <button data-test="habit-create-btn">+</button>
                 </div>
                 <NewHabit></NewHabit>
                 <Habit name={'Nome do hábito'}></Habit>

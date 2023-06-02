@@ -44,11 +44,11 @@ function LoginPage() {
             <img src={logo} />
             <h1>TrackIt</h1>
             <form onSubmit={signUp}>
-                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={formDisabled} />
-                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={formDisabled} />
-                <input type='text' placeholder='nome' value={name} onChange={e => setName(e.target.value)} disabled={formDisabled} />
-                <input type='text' placeholder='foto' value={picture} onChange={e => setPicture(e.target.value)} disabled={formDisabled} />
-                <button type="submit" disabled={formDisabled}>
+                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={formDisabled} data-test="email-input" />
+                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={formDisabled} data-test="password-input" />
+                <input type='text' placeholder='nome' value={name} onChange={e => setName(e.target.value)} disabled={formDisabled} data-test="user-name-input" />
+                <input type='text' placeholder='foto' value={picture} onChange={e => setPicture(e.target.value)} disabled={formDisabled} data-test="user-image-input" />
+                <button type="submit" disabled={formDisabled} data-test="signup-btn">
                     <span className="buttonText">Cadastrar</span>
                     <ThreeDots
                         height="15"
@@ -60,7 +60,7 @@ function LoginPage() {
                     />
                 </button>
             </form>
-            <Link to={'/'}>
+            <Link to={'/'} data-test="login-link">
                 <p>Já tem uma conta? Faça login!</p>
             </Link>
         </CadastroPageContainer>

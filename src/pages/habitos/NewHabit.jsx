@@ -2,20 +2,20 @@ import styled from "styled-components";
 
 function NewHabit() {
     return (
-        <NewHabitContainer>
-            <input type='text' placeholder='nome do hábito' />
+        <NewHabitContainer data-test="habit-create-container">
+            <input type='text' placeholder='nome do hábito' data-test="habit-name-input" />
             <div className="daySelection">
-                <button className="dayButton">D</button>
-                <button className="dayButton">S</button>
-                <button className="dayButton">T</button>
-                <button className="dayButton">Q</button>
-                <button className="dayButton">Q</button>
-                <button className="dayButton">S</button>
-                <button className="dayButton">S</button>
+                <button className="dayButton" data-test="habit-day">D</button>
+                <button className="dayButton" data-test="habit-day">S</button>
+                <button className="dayButton" data-test="habit-day">T</button>
+                <button className="dayButton" data-test="habit-day">Q</button>
+                <button className="dayButton" data-test="habit-day">Q</button>
+                <button className="dayButton" data-test="habit-day">S</button>
+                <button className="dayButton" data-test="habit-day">S</button>
             </div>
             <div>
-                <button className="cancelButton">Cancelar</button>
-                <button className="saveButton">Salvar</button>
+                <button className="cancelButton" data-test="habit-create-cancel-btn">Cancelar</button>
+                <button className="saveButton" data-test="habit-create-save-btn">Salvar</button>
             </div>
         </NewHabitContainer>
     )
