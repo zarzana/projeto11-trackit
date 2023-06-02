@@ -49,15 +49,9 @@ function LoginPage() {
                 <input type='text' placeholder='nome' value={name} onChange={e => setName(e.target.value)} disabled={formDisabled} data-test="user-name-input" />
                 <input type='text' placeholder='foto' value={picture} onChange={e => setPicture(e.target.value)} disabled={formDisabled} data-test="user-image-input" />
                 <button type="submit" disabled={formDisabled} data-test="signup-btn">
-                    <span className="buttonText">Cadastrar</span>
-                    <ThreeDots
-                        height="15"
-                        width="300"
-                        radius="1"
-                        color="#FFFFFF"
-                        ariaLabel="three-dots-loading"
-                        visible={formDisabled}
-                    />
+                    {formDisabled ?
+                        <ThreeDots height="15" width="300" radius="1" color="#FFFFFF" ariaLabel="three-dots-loading" visible={formDisabled} />
+                        : <span className="buttonText">Entrar</span>}
                 </button>
             </form>
             <Link to={'/'} data-test="login-link">

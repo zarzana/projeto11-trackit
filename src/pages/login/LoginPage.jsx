@@ -43,15 +43,9 @@ function LoginPage({ setAuthToken, setUserImage }) {
                 <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={formDisabled} data-test="email-input" />
                 <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={formDisabled} data-test="password-input" />
                 <button type="submit" disabled={formDisabled} data-test="login-btn">
-                    <span className="buttonText">Entrar</span>
-                    <ThreeDots
-                        height="15"
-                        width="300"
-                        radius="1"
-                        color="#FFFFFF"
-                        ariaLabel="three-dots-loading"
-                        visible={formDisabled}
-                    />
+                    {formDisabled ?
+                        <ThreeDots height="15" width="300" radius="1" color="#FFFFFF" ariaLabel="three-dots-loading" visible={formDisabled} />
+                        : <span className="buttonText">Entrar</span>}
                 </button>
             </form>
             <Link to={'/cadastro'} data-test="signup-link">
