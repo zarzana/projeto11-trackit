@@ -3,8 +3,27 @@ import NavBar from "../../components/NavBar";
 import StatusBar from "../../components/StatusBar";
 import NewHabit from "./NewHabit";
 import Habit from "./Habit";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../contexts/Contexts";
+import axios from "axios";
 
 function HabitosPage() {
+
+    const config = { headers: { Authorization: `Bearer ${useContext(AuthContext)}` } }
+
+    const getHabits = () => {
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits';
+        const request = axios.get(URL, config);
+        request
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    useEffect(getHabits, []);
 
     return (
         <>

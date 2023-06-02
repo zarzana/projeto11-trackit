@@ -1,8 +1,27 @@
 import styled from "styled-components";
 import NavBar from "../../components/NavBar";
 import StatusBar from "../../components/StatusBar";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../contexts/Contexts";
+import axios from "axios";
 
 function HistoricoPage() {
+
+    const config = { headers: { Authorization: `Bearer ${useContext(AuthContext)}` } }
+
+    const getHistory = () => {
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily';
+        const request = axios.get(URL, config);
+        request
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    useEffect(getHistory, []);
 
     return (
         <>

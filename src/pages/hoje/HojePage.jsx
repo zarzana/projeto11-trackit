@@ -2,15 +2,36 @@ import styled from "styled-components";
 import NavBar from "../../components/NavBar";
 import StatusBar from "../../components/StatusBar";
 import Task from "./Task";
+import { AuthContext } from "../../contexts/Contexts";
+import { useContext, useEffect } from "react";
+import dayjs from "dayjs";
+import 'dayjs/locale/pt-br';
+import axios from "axios";
 
 function HojePage() {
+
+    const config = { headers: { Authorization: `Bearer ${useContext(AuthContext)}` } }
+
+    const getTodayTasks = () => {
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today';
+        const request = axios.get(URL, config);
+        request
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    useEffect(getTodayTasks, []);
 
     return (
         <>
             <NavBar></NavBar>
             <HojePageContainer>
                 <div className="hojeTop">
-                    <h2>Segunda, 17/05</h2>
+                    <h2>{dayjs().locale('pt-br').format('dddd, DD/MM')}</h2>
                     <p className="hojeStatus">Nenhum hábito concluído ainda</p>
                 </div>
                 <Task name={'Nome da tarefa'}></Task>
@@ -29,6 +50,7 @@ const HojePageContainer = styled.div`
         font-size: 23px;
         line-height: 29px;
         color: #126BA5;
+        text-transform: capitalize;
         }
         .hojeStatus {
             font-size: 18px;
