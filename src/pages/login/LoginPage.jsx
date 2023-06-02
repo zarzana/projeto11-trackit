@@ -1,17 +1,58 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+import logo from "../../assets/logo.svg";
+import { useState } from "react";
+import { ThreeDots } from 'react-loader-spinner';
 
-function LoginPage() {
+function LoginPage({ setAuthToken, setUserImage }) {
 
-    const signIn = () => { }
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [formDisabled, setFormDisabled] = useState(false);
+
+    const navigate = useNavigate();
+
+    const signIn = (e) => {
+        e.preventDefault();
+        setFormDisabled(true);
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login';
+        const request = axios.post(URL, {
+            'email': email,
+            'password': password
+        });
+        request
+            .then((response) => {
+                setAuthToken(response.data.token);
+                setUserImage(response.data.image);
+                navigate('/hoje');
+            })
+            .catch((error) => {
+                console.log(error);
+                alert('Login ou senha inválidos.');
+                setFormDisabled(false);
+            });
+    }
 
     return (
-        <LoginPageContainer>
+        <LoginPageContainer formDisabled={formDisabled}>
+            <img src={logo} />
             <h1>TrackIt</h1>
             <form onSubmit={signIn}>
-                <input type='email' placeholder='email' />
-                <input type='password' placeholder='senha' />
-                <button type="submit">Entrar</button>
+                <input type='email' placeholder='email' value={email} onChange={e => setEmail(e.target.value)} disabled={formDisabled} />
+                <input type='password' placeholder='senha' value={password} onChange={e => setPassword(e.target.value)} disabled={formDisabled} />
+                <button type="submit" disabled={formDisabled}>
+                    <span className="buttonText">Entrar</span>
+                    <ThreeDots
+                        height="15"
+                        width="300"
+                        radius="1"
+                        color="#FFFFFF"
+                        ariaLabel="three-dots-loading"
+                        visible={formDisabled}
+                    />
+                </button>
             </form>
             <Link to={'/cadastro'}>
                 <p>Não tem uma conta? Cadastre-se!</p>
@@ -25,6 +66,11 @@ function LoginPage() {
 const LoginPageContainer = styled.div`
     height: 100vh;
     background: #FFFFFF;
+    img {
+        display: block;
+        margin: auto;
+        padding-top: 68px;
+    }
     h1 {
         margin-bottom: 32px;
         font-family: 'Playball';
@@ -48,6 +94,10 @@ const LoginPageContainer = styled.div`
         font-size: 19px;
         color: #666666;
     }
+    input:disabled {
+        background: #F2F2F2;
+        color: #AFAFAF;
+    }
     button {
         background: #52B6FF;
         border-radius: 5px;
@@ -55,6 +105,13 @@ const LoginPageContainer = styled.div`
         font-size: 21px;
         text-align: center;
         color: #FFFFFF;
+        opacity: 1;
+        .buttonText {
+            display: ${props => props.formDisabled ? 'none' : 'block'};
+        }
+    }
+    button:disabled {
+        opacity: 0.7;
     }
     p {
         margin-top: 20px;

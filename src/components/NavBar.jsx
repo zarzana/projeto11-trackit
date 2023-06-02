@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { UserImageContext } from "../contexts/UserImageContext";
+import { useContext } from "react";
 
 function NavBar() {
     return (
         <NavBarContainer>
             <h1>TrackIt</h1>
-            <img src="https://static.wikia.nocookie.net/cartoons/images/e/ed/Profile_-_SpongeBob_SquarePants.png"></img>
+            <img src={useContext(UserImageContext)}></img>
         </NavBarContainer>
     )
 }
