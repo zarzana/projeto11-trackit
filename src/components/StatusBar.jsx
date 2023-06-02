@@ -33,6 +33,7 @@ function StatusBar() {
 }
 
 const SatusBarContainer = styled.div`
+    z-index: 1;
     position: fixed;
     bottom: 0;
     left: 0;
