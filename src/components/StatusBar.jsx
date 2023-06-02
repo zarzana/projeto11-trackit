@@ -3,26 +3,29 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { dayPercentageContext } from "../contexts/Contexts";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 function StatusBar() {
 
-    const { dayPercentage, setDayPercentage } = useContext(dayPercentageContext);
+    const { dayPercentage, } = useContext(dayPercentageContext);
 
     return (
         <SatusBarContainer>
             <div className="CircularProgressbarDiv">
-                <CircularProgressbar value={dayPercentage} text="Hoje" background backgroundPadding={6} strokeWidth={9}
-                    styles={buildStyles({
-                        backgroundColor: "#52B6FF",
-                        textColor: "#FFFFFF",
-                        pathColor: "#FFFFFF",
-                        trailColor: "transparent",
-                        textSize: "18px",
-                    })} />
+                <Link to={'/hoje'}>
+                    <CircularProgressbar value={dayPercentage} text="Hoje" background backgroundPadding={6} strokeWidth={9}
+                        styles={buildStyles({
+                            backgroundColor: "#52B6FF",
+                            textColor: "#FFFFFF",
+                            pathColor: "#FFFFFF",
+                            trailColor: "transparent",
+                            textSize: "18px",
+                        })} />
+                </Link>
             </div>
             <div>
-                <p className="statusBarLink">Hábitos</p>
-                <p className="statusBarLink">Histórico</p>
+                <Link to={'/habitos'} style={{ textDecoration: 'none' }}><p className="statusBarLink">Hábitos</p></Link>
+                <Link to={'/historico'} style={{ textDecoration: 'none' }}><p className="statusBarLink">Histórico</p></Link>
             </div>
         </SatusBarContainer>
     )
