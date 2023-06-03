@@ -39,6 +39,7 @@ function NewHabit({ setNewHabitVisibility, getHabits, selectedDays, setSelectedD
                 console.log(response.data);
                 getHabits();
                 setSelectedDay([]);
+                setNewHabitName('');
                 closeNewHabit();
             })
             .catch((error) => {
