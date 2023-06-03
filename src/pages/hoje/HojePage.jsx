@@ -3,26 +3,37 @@ import NavBar from "../../components/NavBar";
 import StatusBar from "../../components/StatusBar";
 import Task from "./Task";
 import { AuthContext } from "../../contexts/Contexts";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import 'dayjs/locale/pt-br';
 import axios from "axios";
+import { dayPercentageContext } from "../../contexts/Contexts";
 
 function HojePage() {
 
     const config = { headers: { Authorization: `Bearer ${useContext(AuthContext)}` } }
 
+    const { dayPercentage, setDayPercentage } = useContext(dayPercentageContext);
+
+    const [todayData, setTodayData] = useState([]);
+
     const getTodayTasks = () => {
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today';
         const request = axios.get(URL, config);
         request
-        .then((response) => {
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }
+            .then((response) => {
+                console.log(response.data);
+                setTodayData(response.data);
+                let totalDone = 0;
+                for (let i = 0; i < response.data.length; i++) {
+                    if (response.data[i].done) { totalDone += 1 }
+                }
+                setDayPercentage(100 * totalDone / response.data.length);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     useEffect(getTodayTasks, []);
 
@@ -34,7 +45,11 @@ function HojePage() {
                     <h2 data-test="today">{dayjs().locale('pt-br').format('dddd, DD/MM')}</h2>
                     <p className="hojeStatus" data-test="today-counter">Nenhum hábito concluído ainda</p>
                 </div>
-                <Task name={'Nome da tarefa'}></Task>
+                {todayData.map(task => (
+                    <Task key={task.id} id={task.id} name={task.name} done={task.done}
+                        currentSequence={task.currentSequence} highestSequence={task.highestSequence}
+                        getTodayTasks={getTodayTasks} />
+                ))}
             </HojePageContainer>
             <StatusBar></StatusBar>
         </>
