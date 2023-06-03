@@ -3,7 +3,7 @@ import NavBar from "../../components/NavBar";
 import StatusBar from "../../components/StatusBar";
 import NewHabit from "./NewHabit";
 import Habit from "./Habit";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/Contexts";
 import axios from "axios";
 
@@ -11,16 +11,22 @@ function HabitosPage() {
 
     const config = { headers: { Authorization: `Bearer ${useContext(AuthContext)}` } }
 
+    const [habitsData, setHabitsData] = useState([]);
+    const [newHabitVisibility, setNewHabitVisibility] = useState(false);
+    const [selectedDays, setSelectedDay] = useState([]);
+    const [newHabitName, setNewHabitName] = useState('');
+
     const getHabits = () => {
         const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits';
         const request = axios.get(URL, config);
         request
-        .then((response) => {
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((response) => {
+                console.log(response.data);
+                setHabitsData(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     useEffect(getHabits, []);
@@ -31,13 +37,16 @@ function HabitosPage() {
             <HabitosPageContainer>
                 <div className="habitTop">
                     <h2>Meus hábitos</h2>
-                    <button data-test="habit-create-btn">+</button>
+                    <button onClick={() => { setNewHabitVisibility(true) }} data-test="habit-create-btn">+</button>
                 </div>
-                <NewHabit></NewHabit>
-                <Habit name={'Nome do hábito'}></Habit>
-                <Habit name={'Nome do hábito 2'}></Habit>
-                <Habit name={'Nome do hábito 3'}></Habit>
-                <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+                {newHabitVisibility ?
+                    <NewHabit setNewHabitVisibility={setNewHabitVisibility} getHabits={getHabits}
+                        selectedDays={selectedDays} setSelectedDay={setSelectedDay}
+                        newHabitName={newHabitName} setNewHabitName={setNewHabitName} ></NewHabit>
+                    : <></>}
+                {habitsData.length ?
+                    habitsData.map(habit => (<Habit key={habit.id} id={habit.id} name={habit.name} days={habit.days} getHabits={getHabits}></Habit>))
+                    : <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}
             </HabitosPageContainer>
             <StatusBar></StatusBar>
         </>
