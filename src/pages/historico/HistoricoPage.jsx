@@ -14,7 +14,7 @@ function HistoricoPage() {
         const request = axios.get(URL, config);
         request
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
         })
         .catch((error) => {
             console.log(error);

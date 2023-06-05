@@ -21,7 +21,7 @@ function HabitosPage() {
         const request = axios.get(URL, config);
         request
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 setHabitsData(response.data);
             })
             .catch((error) => {

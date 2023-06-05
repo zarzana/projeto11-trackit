@@ -22,7 +22,7 @@ function HojePage() {
         const request = axios.get(URL, config);
         request
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 setTodayData(response.data);
                 let totalDone = 0;
                 for (let i = 0; i < response.data.length; i++) {

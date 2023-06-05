@@ -36,14 +36,14 @@ function NewHabit({ setNewHabitVisibility, getHabits, selectedDays, setSelectedD
         }, config);
         request
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 getHabits();
                 setSelectedDay([]);
                 setNewHabitName('');
                 closeNewHabit();
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
                 alert('Dados inválidos');
                 setLoading(false);
             });

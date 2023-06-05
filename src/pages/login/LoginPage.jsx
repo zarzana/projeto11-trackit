@@ -29,7 +29,7 @@ function LoginPage({ setAuthToken, setUserImage }) {
                 navigate('/hoje');
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
                 alert('Login ou senha inválidos.');
                 setLoading(false);
             });

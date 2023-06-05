@@ -16,7 +16,7 @@ function Habit({ id, name, days, getHabits }) {
             const request = axios.delete(URL, config);
             request
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     getHabits();
                 })
                 .catch((error) => {
