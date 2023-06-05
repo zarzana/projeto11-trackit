@@ -43,7 +43,9 @@ function HojePage() {
             <HojePageContainer>
                 <div className="hojeTop">
                     <h2 data-test="today">{dayjs().locale('pt-br').format('dddd, DD/MM')}</h2>
-                    <p className="hojeStatus" data-test="today-counter">Nenhum hábito concluído ainda</p>
+                    {dayPercentage ?
+                    <p className="hojeStatusGreen" data-test="today-counter">{Math.round(dayPercentage)}% dos hábitos concluídos</p>
+                    : <p className="hojeStatus" data-test="today-counter">Nenhum hábito concluído ainda</p>}
                 </div>
                 {todayData.map(task => (
                     <Task key={task.id} id={task.id} name={task.name} done={task.done}
@@ -71,6 +73,11 @@ const HojePageContainer = styled.div`
             font-size: 18px;
             line-height: 22px;
             color: #BABABA;
+        }
+        .hojeStatusGreen {
+            font-size: 18px;
+            line-height: 22px;
+            color: #8FC549;
         }
         button {
             width: 40px;
